@@ -8,4 +8,15 @@ describe('brand functionality through the application', {:type => :feature}) do
     click_button('Save')
     expect(page).to have_content('Dansko')
   end
+  it('allows a user to update a brand name') do
+    visit('/')
+    click_link('Brand view')
+    fill_in('brand_name', :with => 'Reef')
+    click_button('Save')
+    click_link('Reef')
+    click_button('Update')
+    fill_in('new_brand_name', :with => "Keen")
+    click_button('Update Brand')
+    expect(page).to have_content('Keen')
+  end
 end

@@ -1,0 +1,14 @@
+<h2>Update: <%= @brand.name() %></h2>
+<hr>
+<form action="/brands/<%= @brand.id()%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="new_brand_name">New Brand Name:</label>
+  <input type="text" name="new_brand_name" value="<%= @brand.name() %>">
+  <button type="submit">Update Brand</button>
+</form>
+<hr>
+<a href="/brands/<%= @brand.id %>"><%= @brand.name() %></a><br>
+<a href="/brands">Brands</a><br>
+<a href="/">Home</a>
+
+<!-- Remove Brand ??? -->

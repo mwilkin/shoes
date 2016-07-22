@@ -13,8 +13,25 @@ get('/brands') do
   erb(:brands)
 end
 
+get('/brands/:id') do
+  @brand = Brand.find(params.fetch('id').to_i)
+  erb(:brand)
+end
+
 post('/brands') do
   name = params.fetch('brand_name')
   new_brand = Brand.create({:name => name})
   redirect('/brands')
+end
+
+post('/brands/:id/update') do
+  @brand = Brand.find(params.fetch('id').to_i)
+  erb(:brand_update)
+end
+
+patch('/brands/:id') do
+  name = params.fetch('new_brand_name')
+  @brand = Brand.find(params.fetch('id').to_i)
+  @brand.update({:name => name})
+  redirect('/brands/'.concat(@brand.id().to_s))
 end
