@@ -13,7 +13,15 @@
 <h3>Add a Store</h3>
 <form action="/stores" method="post">
   <label for="store_name">Store Name:</label>
-  <input type="text" name="store_name">
+  <input type="text" name="store_name"><br>
+  <hr>
+  <% if @brands.any? %>
+    <ul>
+      <% @brands.each do | brand | %>
+        <li><input type="checkbox" name="store_brand[]" value="<%= brand.id() %>"><%= brand.name() %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <button type="submit">Save</button>
 </form>
 <hr>

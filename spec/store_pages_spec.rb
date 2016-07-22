@@ -29,4 +29,17 @@ describe('store functionality through the application', {:type => :feature}) do
     click_button('Delete')
     expect(page).to have_content("No Stores at this time.")
   end
+  it('allows the user to remove a brand from a store') do
+    Brand.create({:name => 'Puma'})
+    visit('/')
+    click_link('Stores')
+    fill_in('store_name', :with => 'Sellwood Soles')
+    check('store_brand[]')
+    click_button('Save')
+    click_link('Sellwood Soles')
+    click_button('Update')
+    select('Puma', :from => 'brand_remove')
+    click_button('Remove Brand')
+    expect(page).to have_no_content('Puma')
+  end
 end

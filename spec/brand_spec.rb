@@ -7,4 +7,8 @@ describe(Brand) do
     test_store.brands.push(test_brand)
     expect(test_store.brands()).to(eq([test_brand]))
   end
+  it('validates the presence of a name') do
+    brand = Brand.new({:name => ''})
+    expect(brand.save()).to(eq(false))
+  end
 end

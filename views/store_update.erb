@@ -4,8 +4,27 @@
   <input type="hidden" name="_method" value="patch">
   <label for="new_store_name">New Store Name:</label>
   <input type="text" name="new_store_name" value="<%= @store.name() %>">
+  <label for="new_brand_name[]">Add Brand</label>
+  <% if @brands.any? %>
+    <ul>
+      <% @brands.each do | brand | %>
+        <li><input type="checkbox" name="new_brand_name[]" value="<%= brand.id() %>"><%= brand.name() %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <button type="submit">Update Store</button>
 </form>
+<hr>
+<form action="/stores/<%= @store.id %>/brand" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <select name="brand_remove">
+    <% @store.brands().each() do | brand |%>
+      <option value="<%= brand.id() %>"><%= brand.name() %> </option>
+    <% end %>
+  </select>
+  <button type="submit">Remove Brand</button>
+</form>
+<hr>
 <form action="/stores/<%= @store.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <button type="submit">Delete Store</button>
