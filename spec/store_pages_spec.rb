@@ -19,4 +19,14 @@ describe('store functionality through the application', {:type => :feature}) do
     click_button('Update Store')
     expect(page).to have_content('House of Soles')
   end
+  it('allows a user to delete a store name') do
+    visit('/')
+    click_link('Stores')
+    fill_in('store_name', :with => 'Sellwood Soles')
+    click_button('Save')
+    click_link('Sellwood Soles')
+    click_button('Update')
+    click_button('Delete')
+    expect(page).to have_content("No Stores at this time.")
+  end
 end
