@@ -10,6 +10,7 @@ end
 
 get('/brands') do
   @brands = Brand.all()
+  @stores = Store.all()
   erb(:brands)
 end
 
@@ -40,4 +41,16 @@ delete('/brands/:id') do
   brand = Brand.find(params.fetch('id').to_i)
   brand.delete()
   redirect('/brands')
+end
+
+get('/stores') do
+  @stores = Store.all()
+  @brand = Brand.all()
+  erb(:stores)
+end
+
+post('/stores') do
+  name = params.fetch('store_name')
+  store = Store.create({:name => name})
+  redirect('/stores')
 end

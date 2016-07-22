@@ -1,0 +1,15 @@
+<h2>Store: <%= @store.name() %></h2>
+<hr>
+<h3>Shoe Brand List</h3>
+<ol>
+  <% @store.brands.each() do | brand | %>
+    <li><%= brand.name() %></li>
+  <% end %>
+</ol>
+<hr>
+<form action="/stores/<%= @stores.id() %>" method="post">
+  <button type="submit">Update</button>
+</form>
+<hr>
+<a href="/stores">Stores</a><br>
+<a href="/">Home</a>
