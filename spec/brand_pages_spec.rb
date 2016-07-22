@@ -19,4 +19,14 @@ describe('brand functionality through the application', {:type => :feature}) do
     click_button('Update Brand')
     expect(page).to have_content('Keen')
   end
+  it('allows a user to delete a brand name') do
+    visit('/')
+    click_link('Brand view')
+    fill_in('brand_name', :with => 'Reef')
+    click_button('Save')
+    click_link('Reef')
+    click_button('Update')
+    click_button('Delete Brand')
+    expect(page).to have_content("No Brands at this time.")
+  end
 end

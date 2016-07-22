@@ -35,3 +35,9 @@ patch('/brands/:id') do
   @brand.update({:name => name})
   redirect('/brands/'.concat(@brand.id().to_s))
 end
+
+delete('/brands/:id') do
+  brand = Brand.find(params.fetch('id').to_i)
+  brand.delete()
+  redirect('/brands')
+end
