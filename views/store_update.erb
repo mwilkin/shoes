@@ -1,0 +1,16 @@
+<h2>Update: <%= @store.name() %></h2>
+<hr>
+<form action="/stores/<%= @store.id() %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="new_store_name">New Store Name:</label>
+  <input type="text" name="new_store_name" value="<%= @store.name() %>">
+  <button type="submit">Update Store</button>
+</form>
+<form action="/stores/<%= @store.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">Delete Store</button>
+</form>
+<hr>
+<a href="/stores/<%= @store.id %>"><%= @store.name() %></a><br>
+<a href="/stores">Stores</a><br>
+<a href="/">Home</a>

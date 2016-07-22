@@ -45,12 +45,37 @@ end
 
 get('/stores') do
   @stores = Store.all()
-  @brand = Brand.all()
+  @brands = Brand.all()
   erb(:stores)
+end
+
+get('/stores/:id') do
+  @store = Store.find(params.fetch('id').to_i)
+  erb(:store)
 end
 
 post('/stores') do
   name = params.fetch('store_name')
-  store = Store.create({:name => name})
+  new_store = Store.create({:name => name})
+  redirect('/stores')
+end
+
+
+post('/stores/:id/update') do
+  @store = Store.find(params.fetch('id').to_i)
+  @brands = Brand.all()
+  erb(:store_update)
+end
+
+patch('/stores/:id') do
+  name = params.fetch('new_store_name')
+  @store = Store.find(params.fetch('id').to_i)
+  @store.update({:name => name})
+  redirect('/stores/'.concat(@store.id().to_s))
+end
+
+delete('/stores/:id') do
+  store = Store.find(params.fetch('id').to_i)
+  store.delete()
   redirect('/stores')
 end
