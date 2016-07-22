@@ -12,13 +12,10 @@ require('pry')
 
 Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file}
 
-Rspec.configure do | config |
+RSpec.configure do | config |
   config.after(:each) do
     Brand.all().each do | brand |
       brand.destroy()
-    end
-    Store.all().each do | store |
-      store.destroy()
     end
   end
 end

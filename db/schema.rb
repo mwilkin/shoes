@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160722163149) do
 
   create_table "brands_stores", force: :cascade do |t|
     t.integer  "brand_id"
-    t.integer  "recipe_id"
+    t.integer  "store_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
