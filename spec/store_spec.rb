@@ -11,4 +11,8 @@ describe(Store) do
     test_store.brands.push(test_brand3)
     expect(test_store.brands()).to(eq([test_brand1, test_brand2, test_brand3]))
   end
+  it('validates the presence of a name') do
+    store = Store.new({:name => ''})
+    expect(store.save()).to(eq(false))
+  end
 end
