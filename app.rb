@@ -49,14 +49,9 @@ get('/stores') do
   erb(:stores)
 end
 
-get('/stores/:id') do
-  @store = Store.find(params.fetch('id'))  #.to_i ?
-  erb(:store)
-end
-
 post('/stores') do
   name = params.fetch('store_name')
-  new_store = Store.create({:name => name})
+  store = Store.create({:name => name})
   if params[:store_brand]
     brand_ids = []
     params[:store_brand].each do | brand_id |
@@ -69,6 +64,10 @@ post('/stores') do
   redirect('/stores')
 end
 
+get('/stores/:id') do
+  @store = Store.find(params.fetch('id'))  #.to_i ?
+  erb(:store)
+end
 
 post('/stores/:id/update') do
   @store = Store.find(params.fetch('id'))  #.to_i ?
