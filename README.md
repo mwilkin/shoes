@@ -17,7 +17,7 @@ _A web application that allows a user to track shoe brand distribution amongst a
 
 ## Database Setup Instructions:
 
-* _In PSQL:_
+* _ _
 
 *
 
