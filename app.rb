@@ -77,9 +77,9 @@ post('/stores/:id/update') do
 end
 
 patch('/stores/:id') do
+  store = Store.find(params.fetch('id').to_i)
   name = params.fetch('new_store_name')
-  @store = Store.find(params.fetch('id').to_i)
-  @store.update({:name => name})
+  store.update({:name => name})
   if params[:new_store_brand]
     brand_ids = []
     params[:new_store_brand].each do | brand_id |
@@ -89,7 +89,7 @@ patch('/stores/:id') do
       Brand.find(brand_id).stores.push(store)
     end
   end
-  redirect('/stores/'.concat(@store.id().to_s))
+  redirect('/stores/'.concat(store.id().to_s))
 end
 
 delete('/stores/:id') do
