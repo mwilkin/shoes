@@ -100,6 +100,6 @@ end
 delete('/stores/:id/brand') do
   store = Store.find(params.fetch('id').to_i)
   brand = Brand.find(params.fetch('brand_remove').to_i)
-  brand.stores.destroy(brand)
+  store.brands.destroy(brand)
   redirect('/stores/'.concat(store.id().to_s))
 end

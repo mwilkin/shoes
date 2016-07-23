@@ -15,4 +15,8 @@ describe(Store) do
     store = Store.new({:name => ''})
     expect(store.save()).to(eq(false))
   end
+  it('changes the case if the first letter of the store name') do
+    store = Store.create({:name => 'brooks'})
+    expect(store.name()).to(eq('Brooks'))
+  end
 end
