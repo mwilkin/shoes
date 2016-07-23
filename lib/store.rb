@@ -3,8 +3,8 @@ class Store < ActiveRecord::Base
   before_save(:titleize_name)
   validates(:name, :presence => true)
 
-private
-  define_method(:titleize_name) do
-    self.name=(name.titleize)
-  end
+  private
+    define_method(:titleize_name) do
+      self.name = name.downcase.titleize
+    end
 end

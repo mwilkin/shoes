@@ -11,4 +11,8 @@ describe(Brand) do
     brand = Brand.new({:name => ''})
     expect(brand.save()).to(eq(false))
   end
+  it('changes the case if the first letter of the store name') do
+    brand = Brand.create({:name => 'cOOKIE'})
+    expect(brand.name()).to(eq('Cookie'))
+  end
 end
