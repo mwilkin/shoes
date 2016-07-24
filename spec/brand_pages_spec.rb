@@ -29,4 +29,11 @@ describe('brand functionality through the application', {:type => :feature}) do
     click_button('Delete Brand')
     expect(page).to have_content("No Brands at this time.")
   end
+  it('with capitalize the brand name regarless of entry')do
+  visit('/')
+  click_link('Brands')
+  fill_in('brand_name', :with => 'daNsKo')
+  click_button('Save')
+  expect(page).to have_content('Dansko')
+  end
 end

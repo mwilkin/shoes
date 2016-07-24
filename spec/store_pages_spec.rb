@@ -51,6 +51,6 @@ describe('store functionality through the application', {:type => :feature}) do
     click_button('Save')
     click_link('Moreland Marathon')
     expect(page).to have_content('Altra')
-
   end
+
 end
