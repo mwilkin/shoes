@@ -8,6 +8,8 @@ get('/') do
   erb(:index)
 end
 
+#Brand Routes
+
 get('/brands') do
   @brands = Brand.all()
   @stores = Store.all()
@@ -16,6 +18,7 @@ end
 
 get('/brands/:id') do
   @brand = Brand.find(params.fetch('id').to_i)
+  @stores =Store.all()
   erb(:brand)
 end
 
@@ -42,6 +45,8 @@ delete('/brands/:id') do
   brand.delete()
   redirect('/brands')
 end
+
+#Store Routes
 
 get('/stores') do
   @stores = Store.all()
@@ -89,7 +94,6 @@ patch('/stores/:id') do
       Brand.find(brand_id).stores.push(store)
     end
   end
-  # binding.pry
   redirect('/stores/'.concat(store.id().to_s))
 end
 
