@@ -42,4 +42,15 @@ describe('store functionality through the application', {:type => :feature}) do
     click_button('Remove Brand')
     expect(page).to have_no_content('Puma')
   end
+  it('allows the user to add a brand to a store') do
+    Brand.create({:name => "Altra"})
+    visit('/')
+    click_link('Stores')
+    fill_in('store_name', :with => 'Moreland Marathon')
+    check('store_brand[]', :exact => "Altra")
+    click_button('Save')
+    click_link('Moreland Marathon')
+    expect(page).to have_content('Altra')
+
+  end
 end
