@@ -65,12 +65,12 @@ post('/stores') do
 end
 
 get('/stores/:id') do
-  @store = Store.find(params.fetch('id'))  #.to_i ?
+  @store = Store.find(params.fetch('id').to_i )
   erb(:store)
 end
 
 post('/stores/:id/update') do
-  @store = Store.find(params.fetch('id'))  #.to_i ?
+  @store = Store.find(params.fetch('id').to_i)
   @brands = Brand.all()
   erb(:store_update)
 end
@@ -79,15 +79,17 @@ patch('/stores/:id') do
   store = Store.find(params.fetch('id').to_i)
   name = params.fetch('new_store_name')
   store.update({:name => name})
-  if params[:new_store_brand]
+
+  if params[:new_brand_name]
     brand_ids = []
-    params[:new_store_brand].each do | brand_id |
+    params[:new_brand_name].each do | brand_id |
       brand_ids.push(brand_id.to_i())
     end
     brand_ids.each do | brand_id |
       Brand.find(brand_id).stores.push(store)
     end
   end
+  # binding.pry
   redirect('/stores/'.concat(store.id().to_s))
 end
 
