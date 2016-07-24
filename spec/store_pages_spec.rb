@@ -52,5 +52,12 @@ describe('store functionality through the application', {:type => :feature}) do
     click_link('Moreland Marathon')
     expect(page).to have_content('Altra')
   end
+  it('will capitalize the store name regardless of entry') do
+    visit('/')
+    click_link('Stores')
+    fill_in('store_name', :with => 'haPPy fEeT')
+    click_button('Save')
+    expect(page).to have_content('Happy Feet')
+  end
 
 end
