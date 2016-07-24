@@ -4,11 +4,12 @@
   <input type="hidden" name="_method" value="patch">
   <label for="new_brand_name">New Brand Name:</label>
   <input type="text" name="new_brand_name" value="<%= @brand.name() %>">
-  <button type="submit">Update Brand</button>
+  <button type="submit" class="btn-success" class="btn-success">Update Brand</button>
 </form>
+<hr>
 <form action="/brands/<%= @brand.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
-  <button type="submit">Delete Brand</button>
+  <button type="submit" class="btn-danger">Delete Brand</button>
 </form>
 <hr>
 <a href="/brands/<%= @brand.id %>"><%= @brand.name() %></a><br>

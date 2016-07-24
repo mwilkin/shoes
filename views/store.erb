@@ -1,14 +1,18 @@
 <h2>Store: <%= @store.name() %></h2>
 <hr>
 <h3>Brand List</h3>
-<ol>
-  <% @store.brands.each() do | brand | %>
-    <li><%= brand.name() %></li>
-  <% end %>
-</ol>
+<% if @brands.any? %>
+  <ol>
+    <% @store.brands.each() do | brand | %>
+      <li><%= brand.name() %></li>
+    <% end %>
+  </ol>
+<% else %>
+  <h4>No Brands at this time.</h4>
+<% end %>
 <hr>
 <form action="/stores/<%= @store.id() %>/update" method="post">
-  <button type="submit">Update</button>
+  <button type="submit" class="btn-success">Update</button>
 </form>
 <hr>
 <a href="/stores">Stores</a><br>
